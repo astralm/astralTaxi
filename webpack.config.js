@@ -1,5 +1,6 @@
 var webpack = require('webpack'),
-    autoprefixer = require('autoprefixer');
+    autoprefixer = require('autoprefixer'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -12,9 +13,6 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'react-hot!babel'
-    }, {
-      test: /\.css$/,
-      loader: 'style!css!postcss'
     }]
   },
   resolve: {
@@ -31,8 +29,5 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
-  ],
-  postcss: function () {
-    return [autoprefixer];
-  }
+  ]
 };
