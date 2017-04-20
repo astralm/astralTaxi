@@ -6,14 +6,20 @@ import setUserInformationAction from '../action_creators/set_user_information_ac
 export const Login = React.createClass({
 	mixins: [PureRenderMixin],
 	validate: function(event){
-		let value = event.target.value;
-		if (value.match(/[0-9]{7}/) == value){
+		var value = event.target.value,
+				regionCode = this.state.regionCode;
+		if (value.match(/[0-9]{10}/) == value){
 			this.setState({
-				phoneNumber: value
+				phoneNumber: regionCode + value
 			});
 			document.getElementById("phoneInput").classList.remove("disabled");
 		} else {
 			document.getElementById("phoneInput").classList.add("disabled");
+		}
+	},
+	getInitialState: function(){
+		return {
+			regionCode: "+7"
 		}
 	},
 	render: function(){
@@ -25,10 +31,10 @@ export const Login = React.createClass({
 		                <span className="sub">Введите E-mail</span>
 		                <form className="form_auth form_auth_user">
 		                    <div className="autorization-input">
-		                        <div className="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" placeholder="+7" /></div>
+		                        <div className="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" placeholder="+7" value={this.state.regionCode}/></div>
 		                    </div>
 		                    <div className="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" placeholder="Номер телефона" className="tel_auth" id="tel_auth" onInput = {this.validate}/></div>
-		                    <a href="registration" className="btn btn-warning btn_auth_fl waves-effect waves-light ui-link disabled" id="phoneInput" onClick={()=>this.props.setUserInformationAction(this.state.phoneNumber)}>Продолжить</a>
+		                    <a href="/#/registration" className="btn btn-warning btn_auth_fl waves-effect waves-light ui-link disabled" id="phoneInput" onClick={()=>this.props.setUserInformationAction(this.state.phoneNumber)}>Продолжить</a>
 		                    <div className="check-doc">
 		                        <div className="check-doc__span">Нажимая продолжить вы подтверждаете своё согласие на обработку личных данных приложением и ознакомлены с правилами использования приложения.</div>
 		                        <a href="" className="rules ui-link">Правила использования</a>
