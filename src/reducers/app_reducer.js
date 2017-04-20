@@ -7,7 +7,7 @@ function setAuth(state, auth = false){
 	return auth === true ? state.set('auth', true) : state.set('auth', false);
 }
 function setUserInformation(state, userInformation = false){
-	return userInformation && state.get('auth') ? state.set("user", userInformation) : state;
+	return userInformation /*&& state.get('auth')*/ ? state.set("user", userInformation) : state;
 }
 
 export default function(state = Map(), action){
