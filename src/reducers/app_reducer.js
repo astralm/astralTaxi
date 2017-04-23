@@ -7,7 +7,13 @@ function setAuth(state, auth = false){
 	return auth === true ? state.set('auth', true) : state.set('auth', false);
 }
 function setUserInformation(state, userInformation = false){
-	return userInformation /*&& state.get('auth')*/ ? state.set("user", userInformation) : state;
+	return userInformation ? state.set("user", userInformation) : state;
+}
+function setVerification(state, verification = false){
+	return verification === true ? state.set("verification", true) : state.set("verification", false);
+}
+function setRegistration(state, registration = false){
+	return registration == true ? state.set("registration", true) : state.set("registration", false);
 }
 
 export default function(state = Map(), action){
@@ -15,8 +21,12 @@ export default function(state = Map(), action){
 		case 'SET_STATE': 
 			return setState(state, action.state);
 		case 'SET_AUTH': 
-			return setState(state, setAuth(state, action.auth));
+			return setAuth(state, action.auth);
 		case 'SET_USER_INFORMATION': 
-			return setState(state, setUserInformation(state, action.userInformation));
+			return setUserInformation(state, action.userInformation);
+		case 'SET_VERIFICATION': 
+			return setVerification(state, action.verification);
+		case 'SET_REGISTRATION':
+			return setRegistration(state, action.registration);
 	}
 }
