@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import setUserInformationAction from '../action_creators/set_user_information_action_creator.js';
+import setUserPhoneAction from '../action_creators/set_user_phone_creator.js';
 import {VerificationContainer} from './Verification';
 
 export const Login = React.createClass({
@@ -38,7 +38,7 @@ export const Login = React.createClass({
 		                        <div className="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" placeholder="+7" value={this.state.regionCode}/></div>
 		                    </div>
 		                    <div className="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" placeholder="Номер телефона" className="tel_auth" id="tel_auth" onInput = {this.validate}/></div>
-		                    <a className="btn btn-warning btn_auth_fl waves-effect waves-light ui-link disabled" id="phoneInput" onClick={()=>{this.props.setUserInformationAction(this.state.phoneNumber, true); this.setState({phoneNumber: ""});}}>Продолжить</a>
+		                    <a className="btn btn-warning btn_auth_fl waves-effect waves-light ui-link disabled" id="phoneInput" onClick={()=>{this.props.setUserPhoneAction(this.state.phoneNumber, true); this.setState({phoneNumber: ""});}}>Продолжить</a>
 		                    <div className="check-doc">
 		                        <div className="check-doc__span">Нажимая продолжить вы подтверждаете своё согласие на обработку личных данных приложением и ознакомлены с правилами использования приложения.</div>
 		                        <a href="" className="rules ui-link">Правила использования</a>
@@ -67,4 +67,4 @@ function mapStateToProps(state){
 	}
 }
 
-export const LoginContainer = connect(mapStateToProps, Object({setUserInformationAction}))(Login);
+export const LoginContainer = connect(mapStateToProps, Object({setUserPhoneAction}))(Login);

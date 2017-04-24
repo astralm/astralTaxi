@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import setVerificationAction from '../action_creators/set_verification_creator.js';
 import setRegistrationAction from '../action_creators/set_registration_creator.js';
+import {RegistrationContainer} from '../components/Registration.jsx';
 
 export const Verification = React.createClass({
 	mixins: [PureRenderMixin],
@@ -55,7 +56,7 @@ export const Verification = React.createClass({
 		          </div>
 		      </div>
 		  </div>
-		</div> : !this.props.in_base ? <div>registration</div> : <div>main</div>;
+		</div> : !this.props.in_base ? <RegistrationContainer/> : <div>main</div>;
 	}
 });
 
