@@ -8,6 +8,15 @@ export default channel => store => next => action => {
 					uxui: "pg_validate_phone"
 				});
 			}
+		case "SET_PIN":
+			if (action.query){
+				channel.push("sms", {
+					name: "2312",
+					mobile: store.getState().getIn(["user", "phoneNumber"]),
+					pin: store.getState().getIn(["user", "pin"]),
+					uxui: "sms"
+				});
+			}
 	}
 	return next(action);
 }

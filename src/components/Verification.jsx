@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import setVerificationAction from '../action_creators/set_verification_creator.js';
+import setRegistrationAction from '../action_creators/set_registration_creator.js';
 
 export const Verification = React.createClass({
 	mixins: [PureRenderMixin],
@@ -19,7 +20,8 @@ export const Verification = React.createClass({
 			event.target.value = ""
 		} else if(inputsValues.filter(item => { return item }).length == 3){
 			inputsValues[id - 1] = value;
-			this.props.setVerificationAction(inputsValues, true);
+			if (inputsValues.join("") == this.props.pin)
+				this.props.setRegistrationAction(true);
 			this.setState({inputsValues: []});
 			for (var i = 1; i < 5; i ++)
 				document.getElementById("I" + i).value = "";
@@ -53,14 +55,16 @@ export const Verification = React.createClass({
 		          </div>
 		      </div>
 		  </div>
-		</div> : <div></div>;
+		</div> : !this.props.in_base ? <div>registration</div> : <div>main</div>;
 	}
 });
 
 function mapStateToProps(state){
 	return {
-		registration: state.get('registration')
+		registration: state.get('registration'),
+		pin: state.getIn(["user", "pin"]),
+		in_base: state.getIn(["user", "in_base"])
 	}
 }
 
-export const VerificationContainer = connect(mapStateToProps, Object({setVerificationAction}))(Verification);
+export const VerificationContainer = connect(mapStateToProps, Object({setVerificationAction, setRegistrationAction}))(Verification);

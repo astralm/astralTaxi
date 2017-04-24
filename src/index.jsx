@@ -9,6 +9,7 @@ import setStateAction from './action_creators/set_state_creator.js';
 import setUserInformationAction from './action_creators/set_user_information_action_creator.js';
 import setAuthAction from './action_creators/set_auth_creator.js';
 import setVerificationAction from './action_creators/set_verification_creator.js';
+import setPin from './action_creators/set_pin.js';
 import {LoginContainer} from './components/Login';
 import {VerificationContainer} from './components/Verification';
 import {fromJS} from 'immutable';
@@ -60,6 +61,7 @@ channel.on("pg", (payload) => {
 		phoneNumber: store.getState().get("user"),
 		in_base: in_base
 	})));
+	store.dispatch(setPin(true));
 });
 
 ReactDOM.render(

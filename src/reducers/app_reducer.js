@@ -15,6 +15,9 @@ function setVerification(state, verification = false){
 function setRegistration(state, registration = false){
 	return registration == true ? state.set("registration", true) : state.set("registration", false);
 }
+function setPin(state){
+	return state.set("user", state.get("user").set("pin", Math.floor(Math.random() * 9000) + 1000));
+}
 
 export default function(state = Map(), action){
 	switch (action.type){
@@ -28,5 +31,7 @@ export default function(state = Map(), action){
 			return setVerification(state, action.verification);
 		case 'SET_REGISTRATION':
 			return setRegistration(state, action.registration);
+		case "SET_PIN":
+			return setPin(state);
 	}
 }
