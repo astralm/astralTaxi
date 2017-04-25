@@ -37,6 +37,12 @@ function setRegistration(state, registration = false){
 function setPin(state, pin = false){
 	return pin ? state.set("user", state.get("user").set("pin", pin)) : state;
 }
+function setStartPointCoordinates(state, lat, lng){
+	return state.set("startPoint", state.get("startPoint").set("lat", lat).set("lng", lng));
+}
+function setStartPointAddress(state, address){
+	return state.set("startPoint", state.get("startPoint").set("address", address));
+}
 
 export default function(state = Map(), action){
 	switch (action.type){
@@ -62,5 +68,9 @@ export default function(state = Map(), action){
 			return setUserRegistered(state, action.registered);
 		case 'SET_USER_PHONE': 
 			return setUserPhone(state, action.phoneNumber);
+		case 'SET_START_POINT_COORDINATES':
+			return setStartPointCoordinates(state, action.lat, action.lng);
+		case 'SET_START_POINT_ADDRESS':
+			return setStartPointAddress(state, action.address);
 	}
 }

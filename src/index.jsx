@@ -5,6 +5,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers/app_reducer';
 import {AppContainer} from './components/App';
+import {MainContainer} from './components/Main.jsx';
 import setStateAction from './action_creators/set_state_creator.js';
 import setUserInformationAction from './action_creators/set_user_information_action_creator.js';
 import setAuthAction from './action_creators/set_auth_creator.js';
@@ -34,13 +35,15 @@ channel.join().receive("ok", function (resp) {
 const routes = <Route component = {AppContainer}>
 	<Route path="/" component = {VerificationContainer}/>
 	<Route path="/login" component = {LoginContainer}/>
+	<Route path="/main" component = {MainContainer}/>
 </Route>
 
 const state = fromJS({
 	auth: false,
 	verification: false,
 	registration: false,
-	user: Map()
+	user: Map(),
+	startPoint: Map()
 });
 
 const store = applyMiddleware(middleware(channel))(createStore)(reducer);
