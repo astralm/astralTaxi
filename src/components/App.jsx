@@ -6,13 +6,15 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 export const App = React.createClass({
 	mixins: [PureRenderMixin],
   render: function() {
-    return !this.props.auth ? <LoginContainer /> : this.props.children;
+    return !this.props.auth || !this.props.verification || !this.props.registration ? <LoginContainer /> : this.props.children;
   }
 });
 
 function mapStateToProps(state){
 	return {
-		auth: state.get('auth')
+		auth: state.get('auth'),
+		verification: state.get('verification'),
+		registration: state.get('registration')
 	}
 }
 
