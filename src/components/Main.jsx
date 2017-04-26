@@ -36,7 +36,7 @@ export const Main = React.createClass({
 	mixins: [PureRenderMixin],
 	getInitialState: function(){
 		return {
-			startPointAddress: this.props.startPointAddress || "",
+			startPointAddress: this.props.startPointAddress,
 			geolocation: {
 				lng: "",
 				lat: ""
@@ -44,20 +44,22 @@ export const Main = React.createClass({
 		}
 	},
 	getStartPointAddress: function(){
-		var r = new XMLHttpRequest();
-		r.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng="+this.state.startPointLat+"%2C"+this.state.startPointLng, true);
-		r.onreadystatechange = (function () {
-		  if (r.readyState == 4 || r.status == 200)
-		  	try{
-		  		this.setState({
-		  			startAddress: JSON.parse(r.responseText).results[0].formatted_address || this.state.startAddress || ""
-		  		});
-		  		this.props.SetStartPointAddressAction(this.state.startAddress);
-		  	} catch(err){
-
-		  	}
-		}).bind(this);
-		r.send();
+		(new google.maps.Geocoder).geocode(
+			{
+				location: {
+					lat: this.state.startPointLat,
+					lng: this.state.startPointLng
+				}
+			},
+			((results, status) => {
+				if(status === "OK"){
+					this.props.SetStartPointAddressAction(results[0].formatted_address);
+					this.setState({
+						startPointAddress: results[0].formatted_address
+					});
+				}
+			}).bind(this)
+		);
 	},
 	render: function(){
 		navigator.geolocation.getCurrentPosition((function(data){
@@ -88,7 +90,7 @@ export const Main = React.createClass({
 			        <div className="location-map">
 			            <div className="loca">
 			                <img src="img/map-pin.png" alt="ico" />
-			                <span id="pac-input">{this.state.startAddress}</span>
+			                <span id="pac-input">{this.state.startPointAddress}</span>
 			            </div>
 			            <a href="#user-main">
 			                <i className="burger fa fa-bars fa-2x menu" aria-hidden="true"></i>
