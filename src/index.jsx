@@ -16,6 +16,7 @@ import setUserPhoneAction from './action_creators/set_user_phone_creator.js';
 import setUserRegisteredAction from './action_creators/set_user_registered_creator.js';
 import {LoginContainer} from './components/Login';
 import {VerificationContainer} from './components/Verification';
+import {AddressContainer} from './components/Address.jsx';
 import {fromJS, Map} from 'immutable';
 import middleware from './middlewares/middleware.js';
 import * as phoenix from 'phoenix';
@@ -36,6 +37,7 @@ const routes = <Route component = {AppContainer}>
 	<Route path="/" component = {VerificationContainer}/>
 	<Route path="/login" component = {LoginContainer}/>
 	<Route path="/main" component = {MainContainer}/>
+	<Route path="/address" component = {AddressContainer}/>
 </Route>
 
 const state = fromJS({
@@ -43,7 +45,25 @@ const state = fromJS({
 	verification: false,
 	registration: false,
 	user: Map(),
-	startPoint: Map()
+	startPoint: Map(),
+	endPoint: Map(),
+	savedPlaces: fromJS({
+		work: {
+			lat: "29.7604267",
+			lng: "-95.3698028",
+			address: "Хьюстон, Техас, США"
+		},
+		home: {
+			lat: "55.75674743813564",
+			lng: "37.62287363033295",
+			address: "Богоявленский пер., 1, Москва, Россия, 109012"
+		},
+		history: {
+			lat: "-22.9219",
+			lng: "-43.235376599999995",
+			address:"Shopping Tijuca - Av. Maracanã, 987 - Loja 1062 - Tijuca, Rio de Janeiro - RJ, 20543-970, Бразилия"
+		}
+	})
 });
 
 const store = applyMiddleware(middleware(channel))(createStore)(reducer);
@@ -52,7 +72,7 @@ store.subscribe(function(){
 });
 
 if (localStorage.hasOwnProperty("state")){
-	store.dispatch(setStateAction(fromJS(JSON.parse(localStorage.state.split("Map").join("")))));
+	store.dispatch(setStateAction(fromJS(JSON.parse(localStorage.state.split("Map").join("").split("List").join("")))));
 } else{
 	store.dispatch(setStateAction(state));
 } 

@@ -43,6 +43,12 @@ function setStartPointCoordinates(state, lat, lng){
 function setStartPointAddress(state, address){
 	return state.set("startPoint", state.get("startPoint").set("address", address));
 }
+function setEndPointAddress(state, address){
+	return state.set("endPoint", state.get("endPoint").set("address", address));
+}
+function setEndPointCoordinates(state, lat, lng){
+	return state.set("endPoint", state.get("endPoint").set("lat", lat).set("lng", lng));
+}
 
 export default function(state = Map(), action){
 	switch (action.type){
@@ -72,5 +78,9 @@ export default function(state = Map(), action){
 			return setStartPointCoordinates(state, action.lat, action.lng);
 		case 'SET_START_POINT_ADDRESS':
 			return setStartPointAddress(state, action.address);
+		case 'SET_END_POINT_ADDRESS':
+			return setEndPointAddress(state, action.address);
+		case 'SET_END_POINT_COORDINATES':
+			return setEndPointCoordinates(state, action.lat, action.lng);
 	}
 }
