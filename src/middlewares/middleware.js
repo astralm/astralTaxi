@@ -6,7 +6,7 @@ export default channel => store => next => action => {
 				channel.push("sms", {
 					name: "2312",
 					mobile: store.getState().getIn(["user", "phoneNumber"]),
-					pin: action.pin,
+					pin: action.pin.toString(),
 					uxui: "sms"
 				});
 			}
