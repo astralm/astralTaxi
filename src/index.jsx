@@ -17,6 +17,7 @@ import setUserRegisteredAction from './action_creators/set_user_registered_creat
 import {LoginContainer} from './components/Login';
 import {VerificationContainer} from './components/Verification';
 import {AddressContainer} from './components/Address.jsx';
+import {Loading} from './components/Loading.jsx';
 import {fromJS, Map} from 'immutable';
 import middleware from './middlewares/middleware.js';
 import * as phoenix from 'phoenix';
@@ -38,6 +39,7 @@ const routes = <Route component = {AppContainer}>
 	<Route path="/login" component = {LoginContainer}/>
 	<Route path="/main" component = {MainContainer}/>
 	<Route path="/address" component = {AddressContainer}/>
+	<Route path="/loading" component = {Loading}/>
 </Route>
 
 const state = fromJS({

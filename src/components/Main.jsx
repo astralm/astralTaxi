@@ -76,6 +76,7 @@ export const Main = React.createClass({
 				try {
 					this.props.SetEndPointCoordinatesAction(this.state.history.get('lat'), this.state.history.get('lng'));
 					this.props.SetEndPointAddressAction(this.state.history.get('address'));
+					this.props.history.push('/loading');
 				} catch (err){
 					console.log(err);
 				}
@@ -84,6 +85,7 @@ export const Main = React.createClass({
 				try {
 					this.props.SetEndPointCoordinatesAction(this.state.home.get('lat'), this.state.home.get('lng'));
 					this.props.SetEndPointAddressAction(this.state.home.get('address'));
+					this.props.history.push('/loading');
 				} catch (err){
 					console.log(err);
 				}
@@ -92,6 +94,7 @@ export const Main = React.createClass({
 				try{
 					this.props.SetEndPointCoordinatesAction(this.state.work.get('lat'), this.state.work.get('lng'));
 					this.props.SetEndPointAddressAction(this.state.work.get('address'));
+					this.props.history.push('/loading');
 				} catch (err){
 					console.log(err);
 				}
