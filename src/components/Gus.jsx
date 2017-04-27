@@ -33,6 +33,10 @@ export const Gus = React.createClass({
 		}
 	},
 	render : function(){
+		if (!this.props.startLng || !this.props.startLat)
+			navigator.geolocation.getCurrentPosition((function(data){
+				this.props.SetStartPointCoordinatesAction(data.coords.latitude, data.coords.longitude);
+			}).bind(this));
 		return <div data-role="page" id="gus" className="il white ui-page ui-page-theme-a ui-page-active" data-url="gus" tabIndex="0">
 	    <div data-role="content" style={{padding: 0, height: "100vh"}} className="ui-content" role="main">
         <div className="segment-title">

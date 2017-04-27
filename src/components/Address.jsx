@@ -77,6 +77,7 @@ export const Address = React.createClass({
 			    				} else {
 			    					this.props.SetEndPointAddressAction(address.address);
 			    					this.props.SetEndPointCoordinatesAction(address.lat, address.lng);
+			    					this.props.history.push("/loading");
 			    				}
 			    			};
 			    			let title = "Предлагаемый адрес",

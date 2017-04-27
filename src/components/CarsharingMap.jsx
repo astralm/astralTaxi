@@ -112,7 +112,7 @@ export const CarsharingMap = React.createClass({
                 <span className="carsharing__card__head-text">ТАРИФ</span>
                 <span className="carsharing__card__main-text">8 руб./мин</span>
               </div>
-              <div className="carsharing__card" onClick = {(()=>{this.props.history.push("/gus")}).bind(this)}>
+              <div className="carsharing__card" onClick = {(()=>{this.props.history.push("/gus")}).bind(this)} style = {{cursor: "pointer"}}>
                 <span className="carsharing__card__head-text">ОСТАВШЕЕСЯ ТОПЛИВО</span>
                 <div className="wrapper__main-text">
                 	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACLElEQVQ4T5XTv2tTQRwA8Pte3r2rkMFFQqK4SFuEii6CuDmIi4MIOvkLEnMJWbQ4OFjMUrCKwa157+WH7eDqHyA46ya0IiKUTsWYiNUl3M+vXGxj+2gp/S7vuPvyuXvf7x0QQki9Xqe5XO4RY2wBAAgi+ulRUEqJc27DWntdCPFxvLA1AP+NougSY+y9tXYTEf+kkzKZTN5au46I54UQv3euj4A4ju9xzrtSysta6w9pIAzDeUJIkRAyCwCmVCp1tnNGQLvdvgMAS8aYmXK5/DkNxHH8BADmhsPhqYmJifuIuCaEWPJ5uwDn3JlSqbSaBqIomvOAtfZEr9cb5PP5Fefcy2q12hkDlNIlpdSFvQrVarWeOedmtdYna7Xa9ziOV4MgmNZa3x0BrVbrNmNsWUq5DgCD9AkIIZPOOTDGTHsgiqKVMAxnlFJmDARBsGyMGbUtHc4538pNrfVpDyRJ8pQxVtda/6uBP4EHlFJ7bE7I1t3oA0BTKbXc7/fXCoXCiyAIHhwG+OHbiIjHhRDPO53OMWPMt8MAA0S8SQi5KISYT5Ikh4j/AV/EA37hp3PuGgBcLZfLj5vN5iSl9O32Vb7BOX99APCLc35WSlmllDJELGit24CINEmSK5zzKSnlnkX0k4wxp5R6J4T4uri4eC4Mw16xWNyAbrd71BjzBQByvl37BeecDIfDN5VK5daux9RoNI5ks9lPmUxmylq7LxCGIZFSvhJCPNyZ9BeOtTPMNDuNJAAAAABJRU5ErkJggg==" alt="gas" />
