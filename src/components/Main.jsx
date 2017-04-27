@@ -30,6 +30,9 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
     }
   >
     <div className="centerMarker"></div>
+    <div className="carsharignButton">
+    	<img src="img/car_black.png"/>
+    </div>
   </GoogleMap>
 ));
 const MapContainer = <div id="map" className="map" style={{width: "100%", height: "100%", position: "relative", overflow: "hidden"}}></div>;
@@ -150,7 +153,7 @@ export const Main = React.createClass({
 			                        <div className="img-round">
 			                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAC7UlEQVQ4T5WUT4jVVRTHv9/77ltMIySZRCuhwsZw7vv9YYYeLtpYCeZOwVnpZsysjRC0STe2N4IGnQra2ULaqGBUm2IylN+7v/ejybEmCmpniDATM83c3zlxH+/F+HIYu8tz7vmce84950tscrIse05E9gHYC+BxY8x9Vf3BGDNXFMUvDwtjnudPAnisKIrfAWiapi8AOAPgMEkrIssAVgCMGGO2qeo6gMsA3vPe/7gRyiRJZgAcLMtyV5qmUyQvqqoRkVmSl9fX1xfm5+fvTU5O7lhbWxvrJzlBMoQQTlZVdWkAZKvV+oTkAZJnAXxM8luSJ4qiWIiX8jx/VlXfJPnhoLw8z8dEJN7dF0KYqqrqs3g3wi4aY44DCADmlpaWDi0uLv49yJZl2avGmOsicqDT6XwxsCdJsp3kVZIuhDBRVdWdCLtgrX1dRGpVfZvkHVX9syzLWzEwTdP9JL9U1Ze9919t7NHYWGv3yIjpALjqvT9K59xss9mcFhGQhDEGdV1/7b3fvxUs+pMkOU/ylLV2D+MIAHg6hFglYK2NsHvdbnd+CPaS9/6b4ZFwzr1orb0hIse52ZwN7IMyAbyjqrEkqGpYXl6+EXubpulOVf3VGDMTyzzUeyJ5viiKOEMPnFar9Uqj0fi38dFZ17Wo6q6qqv5wzo0aY34D8Hn8gA9IvkXyKe/93WFYu91+YnV1Ndtof9jLRGQmDu0xY8ynIYR2VVXfb1X2sH98fLzdbDa/U9VjnJiYeCaEcFtVZ8qyPP1/YUmSvE/yjV6r+j8WJ/jgyorkCwvdnx4V6Jx7vtFoFCJypdvtTvVgcT1U9aaqVqr6WlmW97cC9jfgWlSVuq4nexswCHLOHbXWXlLVOZLTnU7n9mbALMv2qOpH/9nNjQHOuSlr7QVVtao6G6VGRH4G8BeAUZK7SUZpmo67XNf1g6oxnL2f9V0AR0g2+3q22tezURHp6Zkx5tzw6zfdgCg9UWlJ7hWR7Y+itP8AaP6R4t7npzMAAAAASUVORK5CYII=" alt="round" />
 			                        </div>
-			                        <span>Кочновский пр-д</span>
+			                        <span>{this.state.history.get('address')}</span>
 			                    </a>
 			                    <a className="location-map-go__item" id="workPoint" onClick = {this.setEndPoint}>
 			                        <div className="img-round">

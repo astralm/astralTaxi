@@ -49,18 +49,18 @@ const state = fromJS({
 	endPoint: Map(),
 	savedPlaces: fromJS({
 		work: {
-			lat: "29.7604267",
-			lng: "-95.3698028",
+			lat: 29.7604267,
+			lng: -95.3698028,
 			address: "Хьюстон, Техас, США"
 		},
 		home: {
-			lat: "55.75674743813564",
-			lng: "37.62287363033295",
+			lat: 55.75674743813564,
+			lng: 37.62287363033295,
 			address: "Богоявленский пер., 1, Москва, Россия, 109012"
 		},
 		history: {
-			lat: "-22.9219",
-			lng: "-43.235376599999995",
+			lat: -22.9219,
+			lng: -43.235376599999995,
 			address:"Shopping Tijuca - Av. Maracanã, 987 - Loja 1062 - Tijuca, Rio de Janeiro - RJ, 20543-970, Бразилия"
 		}
 	})
