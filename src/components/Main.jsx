@@ -29,6 +29,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
     	}
     }
   >
+  	<Marker icon = "img/geolocation.png" position = {new google.maps.LatLng(props.geoLat, props.geoLng)}/>
     <div className="centerMarker"></div>
     	{
     		props.carsharign && props.endPointAddress != "" ?
@@ -54,8 +55,21 @@ export const Main = React.createClass({
 				lat: ""
 			},
 			carsharign: this.props.carsharign,
-			endPointAddress: this.props.endPointAddress
+			endPointAddress: this.props.endPointAddress			
 		}
+	},
+	componentWillMount : function(){
+		if (!this.props.startLng || !this.props.startLat)
+			navigator.geolocation.getCurrentPosition((function(data){
+				this.props.SetStartPointCoordinatesAction(data.coords.latitude, data.coords.longitude);
+			}).bind(this));
+		else
+			navigator.geolocation.getCurrentPosition((function(data){
+				this.setState({
+					geoLng : data.coords.longitude,
+					geoLat : data.coords.latitude
+				});
+			}).bind(this));
 	},
 	getStartPointAddress: function(){
 		(new google.maps.Geocoder).geocode(
@@ -108,10 +122,6 @@ export const Main = React.createClass({
 		}
 	},
 	render: function(){
-		if (!this.props.startLng || !this.props.startLat)
-			navigator.geolocation.getCurrentPosition((function(data){
-				this.props.SetStartPointCoordinatesAction(data.coords.latitude, data.coords.longitude);
-			}).bind(this));
 		return <div data-role="page" id="main" className="location-map-go il white" style={{zIndex:2, display: "block"}} data-url="main">
 			    <div data-role="content" style={{padding: 0, height: "100vh"}}>
 		        	<GettingStartedGoogleMap 
@@ -133,6 +143,8 @@ export const Main = React.createClass({
 		        		}
 		        		startLng = {this.props.startLng}
 		        		startLat = {this.props.startLat}
+		        		geoLat = {this.state.geoLat}
+		        		geoLng = {this.state.geoLng}
 		        		carsharign = {this.state.carsharign}
 		        		history = {this.props.history}
 		        		endPointAddress = {this.endPointAddress}

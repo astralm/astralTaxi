@@ -39,19 +39,18 @@ export const CarsharingMap = React.createClass({
 	mixins: [PureRenderMixin],
 	getInitialState: function(){
 		return {
-			startLng : this.props.startLng,
-			startLat : this.props.startLat,
-			endLng : this.props.endLng,
-			endLat : this.props.endLat
+			
 		}
 	},
-	render: function(){
+	componentWillMount : function(){
 		navigator.geolocation.getCurrentPosition((function(data){
 			this.setState({
 				startLng : data.coords.longitude,
 				startLat : data.coords.latitude
 			});
 		}).bind(this));
+	},
+	render: function(){
 		return <div data-role="page" id="carsharing" className="il white ui-page ui-page-theme-a ui-page-active" data-url="carsharing" tabIndex="0">
 	    <div data-role="content" style={{padding: 0, height: "100vh"}} className="ui-content" role="main">
 	      <div className="location-map carsharing">
@@ -128,13 +127,4 @@ export const CarsharingMap = React.createClass({
 	}
 });
 
-function mapStateToProps(state){
-	return {
-		startLng : state.getIn(["startPoint", "lng"]),
-		startLat : state.getIn(["startPoint", "lat"]),
-		endLng : state.getIn(["endPoint", "lng"]),
-		endLat : state.getIn(["endPoint", "lat"])
-	}
-}
-
-export const CarsharingMapContainer = connect(mapStateToProps)(CarsharingMap);
+export const CarsharingMapContainer = connect(null)(CarsharingMap);

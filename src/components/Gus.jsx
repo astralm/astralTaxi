@@ -28,15 +28,18 @@ export const Gus = React.createClass({
 	mixins: [PureRenderMixin],
 	getInitialState: function(){
 		return {
-			startLng : this.props.startLng,
-			startLat : this.props.startLat
+			
 		}
 	},
+	componentWillMount : function(){
+		navigator.geolocation.getCurrentPosition((function(data){
+			this.setState({
+				startLng : data.coords.longitude,
+				startLat : data.coords.latitude
+			});
+		}).bind(this));
+	},
 	render : function(){
-		if (!this.props.startLng || !this.props.startLat)
-			navigator.geolocation.getCurrentPosition((function(data){
-				this.props.SetStartPointCoordinatesAction(data.coords.latitude, data.coords.longitude);
-			}).bind(this));
 		return <div data-role="page" id="gus" className="il white ui-page ui-page-theme-a ui-page-active" data-url="gus" tabIndex="0">
 	    <div data-role="content" style={{padding: 0, height: "100vh"}} className="ui-content" role="main">
         <div className="segment-title">
@@ -62,11 +65,4 @@ export const Gus = React.createClass({
 	}
 });
 
-function mapStateToProps(state){
-	return {
-		startLat : state.getIn(['startPoint', 'lat']),
-		startLng : state.getIn(['startPoint', 'lng'])
-	}
-}
-
-export const GusContainer = connect(mapStateToProps)(Gus);
+export const GusContainer = connect(null)(Gus);
