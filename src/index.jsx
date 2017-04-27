@@ -46,6 +46,7 @@ const state = fromJS({
 	auth: false,
 	verification: false,
 	registration: false,
+	carsharing: true,
 	user: Map(),
 	startPoint: Map(),
 	endPoint: Map(),

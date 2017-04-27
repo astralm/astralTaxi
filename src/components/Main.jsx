@@ -30,9 +30,13 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
     }
   >
     <div className="centerMarker"></div>
-    <div className="carsharignButton">
-    	<img src="img/car_black.png"/>
-    </div>
+    	{
+    		props.carsharign ?
+    		  <div className="carsharignButton">
+	    	    <img src="img/car_black.png"/>
+	        </div>
+    	  : ""
+    	}
   </GoogleMap>
 ));
 const MapContainer = <div id="map" className="map" style={{width: "100%", height: "100%", position: "relative", overflow: "hidden"}}></div>;
@@ -48,7 +52,8 @@ export const Main = React.createClass({
 			geolocation: {
 				lng: "",
 				lat: ""
-			}
+			},
+			carsharign: this.props.carsharign
 		}
 	},
 	getStartPointAddress: function(){
@@ -127,6 +132,7 @@ export const Main = React.createClass({
 		        		}
 		        		startLng = {this.props.startLng}
 		        		startLat = {this.props.startLat}
+		        		carsharign = {this.state.carsharign}
 		        	/>
 			        <div className="location-map">
 			            <div className="loca" onClick = {(()=>{this.props.history.push('/address')}).bind(this)}>
@@ -190,7 +196,8 @@ function mapStateToProps(state){
 		startLat: state.getIn(["startPoint", "lat"]),
 		historyPoint: state.getIn(["savedPlaces", 'history']),
 		home: state.getIn(["savedPlaces", 'home']),
-		work: state.getIn(["savedPlaces", 'work'])
+		work: state.getIn(["savedPlaces", 'work']),
+		carsharign: state.get("carsharing")
 	}
 }
 
