@@ -10,7 +10,7 @@ import SetEndPointCoordinatesAction from "../action_creators/set_end_point_coord
 const GettingStartedGoogleMap = withGoogleMap(props => (
   <GoogleMap
     zoom={17}
-    center={{ lat: props.startLat /*-33.8688*/, lng: props.startLng }}
+    center={{ lat: props.startLat, lng: props.startLng }}
     mapTypeId = {google.maps.MapTypeId.ROADMAP}
     options= {{
     	zoomControlOptions: {
@@ -31,8 +31,8 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
   >
     <div className="centerMarker"></div>
     	{
-    		props.carsharign ?
-    		  <div className="carsharignButton">
+    		props.carsharign && props.endPointAddress != "" ?
+    		  <div className="carsharignButton" onClick = {(()=>{props.history.push('/carsharing')}).bind(this)}>
 	    	    <img src="img/car_black.png"/>
 	        </div>
     	  : ""
@@ -53,7 +53,8 @@ export const Main = React.createClass({
 				lng: "",
 				lat: ""
 			},
-			carsharign: this.props.carsharign
+			carsharign: this.props.carsharign,
+			endPointAddress: this.props.endPointAddress
 		}
 	},
 	getStartPointAddress: function(){
@@ -133,6 +134,8 @@ export const Main = React.createClass({
 		        		startLng = {this.props.startLng}
 		        		startLat = {this.props.startLat}
 		        		carsharign = {this.state.carsharign}
+		        		history = {this.props.history}
+		        		endPointAddress = {this.endPointAddress}
 		        	/>
 			        <div className="location-map">
 			            <div className="loca" onClick = {(()=>{this.props.history.push('/address')}).bind(this)}>
@@ -194,6 +197,7 @@ function mapStateToProps(state){
 		startPointAddress: state.getIn(["startPoint","address"]),
 		startLng: state.getIn(["startPoint", "lng"]),
 		startLat: state.getIn(["startPoint", "lat"]),
+		endPointAddress: state.getIn(["endPoint", 'address']),
 		historyPoint: state.getIn(["savedPlaces", 'history']),
 		home: state.getIn(["savedPlaces", 'home']),
 		work: state.getIn(["savedPlaces", 'work']),

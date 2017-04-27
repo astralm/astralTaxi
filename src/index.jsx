@@ -18,6 +18,8 @@ import {LoginContainer} from './components/Login';
 import {VerificationContainer} from './components/Verification';
 import {AddressContainer} from './components/Address.jsx';
 import {Loading} from './components/Loading.jsx';
+import {CarsharingMapContainer} from './components/CarsharingMap.jsx';
+import {GusContainer} from './components/Gus.jsx';
 import {fromJS, Map} from 'immutable';
 import middleware from './middlewares/middleware.js';
 import * as phoenix from 'phoenix';
@@ -40,6 +42,8 @@ const routes = <Route component = {AppContainer}>
 	<Route path="/main" component = {MainContainer}/>
 	<Route path="/address" component = {AddressContainer}/>
 	<Route path="/loading" component = {Loading}/>
+	<Route path="/carsharing" component = {CarsharingMapContainer}/>
+	<Route path="/gus" component = {GusContainer} />
 </Route>
 
 const state = fromJS({
